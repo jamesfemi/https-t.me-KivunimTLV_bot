@@ -1,11 +1,9 @@
 import os
 from telegram import Update
-from telegram.ext import ApplicationBuilder, MessageHandler, ContextTypes, filters
+from telegram.ext import ApplicationBuilder, CommandHandler, ContextTypes
 
-BOT_TOKEN = os.getenv("8497214557:AAHPXpdcquwy8NCWllBpvgRY1nzj5fWEpKg")
-
-if not BOT_TOKEN:
-    raise ValueError("BOT_TOKEN missing!")
+# Get bot token from environment variable
+TOKEN = os.getenv("8497214557:AAHPXpdcquwy8NCWllBpvgRY1nzj5fWEpKg")
 
 WELCOME_MESSAGE = """מדויקת לפי הצרכים שלך 🌿
 
@@ -17,3 +15,19 @@ https://t.me/m/lreqLDxBYjA0
 
 👆👆להזמנות וקישקושים לחצו על הקישורים מחכים לכם 👆👆
 """
+
+# /start command
+async def start(update: Update, context: ContextTypes.DEFAULT_TYPE):
+    await update.message.reply_text(WELCOME_MESSAGE)
+
+# Main function
+def main():
+    app = ApplicationBuilder().token(TOKEN).build()
+
+    app.add_handler(CommandHandler("start", start))
+
+    print("Bot started...")
+    app.run_polling()
+
+if __name__ == "__main__":
+    main()
