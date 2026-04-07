@@ -3,7 +3,7 @@ from telegram import Update
 from telegram.ext import ApplicationBuilder, CommandHandler, ContextTypes
 
 # Correct way to get token
-TOKEN = os.getenv("BOT_TOKEN")
+TOKEN = os.getenv("8497214557:AAHPXpdcquwy8NCWllBpvgRY1nzj5fWEpKg")
 
 if not TOKEN:
     raise ValueError("BOT_TOKEN is missing! Add it in Render.")
